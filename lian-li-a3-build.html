@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lian Li A3 White - Tu Build</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    color: #fff;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 1.4rem;
+    color: #ccc;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .specs {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #888;
+  }
+  .spec-tag {
+    background: #1a1a2e;
+    border: 1px solid #333;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  canvas {
+    border-radius: 8px;
+    box-shadow: 0 0 60px rgba(0,200,255,0.15);
+  }
+</style>
+</head>
+<body>
+<h1>Lian Li A3 White — Tu Build</h1>
+<div class="specs">
+  <span class="spec-tag">AMD GPU</span>
+  <span class="spec-tag">ASUS TAICHI</span>
+  <span class="spec-tag">Liquid Cooling</span>
+  <span class="spec-tag">RGB Fans</span>
+  <span class="spec-tag">White Case</span>
+</div>
+<canvas id="c" width="700" height="900"></canvas>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+
+let tick = 0;
+
+// RGB cycle
+function rgb(offset) {
+  const t = (tick + offset) * 0.02;
+  const r = Math.floor(Math.sin(t) * 127 + 128);
+  const g = Math.floor(Math.sin(t + 2.094) * 127 + 128);
+  const b = Math.floor(Math.sin(t + 4.188) * 127 + 128);
+  return `rgb(${r},${g},${b})`;
+}
+
+function rgbAlpha(offset, a) {
+  const t = (tick + offset) * 0.02;
+  const r = Math.floor(Math.sin(t) * 127 + 128);
+  const g = Math.floor(Math.sin(t + 2.094) * 127 + 128);
+  const b = Math.floor(Math.sin(t + 4.188) * 127 + 128);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
+// Draw a single RGB fan
+function drawFan(cx, cy, radius, offset) {
+  // Outer ring glow
+  const glow = ctx.createRadialGradient(cx, cy, radius * 0.6, cx, cy, radius + 8);
+  glow.addColorStop(0, rgbAlpha(offset, 0));
+  glow.addColorStop(0.7, rgbAlpha(offset, 0.4));
+  glow.addColorStop(1, rgbAlpha(offset, 0));
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius + 8, 0, Math.PI * 2);
+  ctx.fillStyle = glow;
+  ctx.fill();
+
+  // Fan frame
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+  ctx.strokeStyle = '#ddd';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+  ctx.fillStyle = '#e8e8e8';
+  ctx.fill();
+
+  // Inner hexagonal frame
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius * 0.85, 0, Math.PI * 2);
+  ctx.strokeStyle = '#bbb';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // RGB ring inside
+  const ring = ctx.createRadialGradient(cx, cy, radius * 0.6, cx, cy, radius * 0.85);
+  ring.addColorStop(0, rgbAlpha(offset, 0.8));
+  ring.addColorStop(1, rgbAlpha(offset + 40, 0.8));
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius * 0.85, 0, Math.PI * 2);
+  ctx.arc(cx, cy, radius * 0.60, 0, Math.PI * 2, true);
+  ctx.fillStyle = ring;
+  ctx.fill();
+
+  // Spinning blades
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(tick * 0.08);
+  for (let i = 0; i < 9; i++) {
+    ctx.save();
+    ctx.rotate((i / 9) * Math.PI * 2);
+    ctx.beginPath();
+    ctx.ellipse(radius * 0.28, 0, radius * 0.22, radius * 0.08, 0.3, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(180,180,190,0.85)';
+    ctx.fill();
+    ctx.restore();
+  }
+  // Hub
+  ctx.beginPath();
+  ctx.arc(0, 0, radius * 0.12, 0, Math.PI * 2);
+  ctx.fillStyle = '#555';
+  ctx.fill();
+  ctx.restore();
+}
+
+// Draw radiator
+function drawRadiator(x, y, w, h) {
+  // Body
+  ctx.fillStyle = '#2a2a2a';
+  ctx.fillRect(x, y, w, h);
+  // Fins
+  const finCount = 28;
+  for (let i = 0; i < finCount; i++) {
+    const fx = x + (w / finCount) * i;
+    ctx.fillStyle = i % 2 === 0 ? '#333' : '#222';
+    ctx.fillRect(fx, y, w / finCount, h);
+  }
+  // Frame
+  ctx.strokeStyle = '#555';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(x, y, w, h);
+}
+
+// Draw GPU
+function drawGPU(x, y, w, h) {
+  // PCB
+  const grad = ctx.createLinearGradient(x, y, x, y + h);
+  grad.addColorStop(0, '#1a1a1a');
+  grad.addColorStop(1, '#111');
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 8);
+  ctx.fill();
+
+  // Heatsink shroud - ASUS TAICHI style black
+  const shroud = ctx.createLinearGradient(x, y, x, y + h * 0.75);
+  shroud.addColorStop(0, '#1c1c1c');
+  shroud.addColorStop(0.5, '#222');
+  shroud.addColorStop(1, '#181818');
+  ctx.fillStyle = shroud;
+  ctx.beginPath();
+  ctx.roundRect(x + 5, y + 5, w - 10, h * 0.82, 6);
+  ctx.fill();
+
+  // Fin detail lines on shroud
+  for (let i = 0; i < 6; i++) {
+    ctx.beginPath();
+    ctx.moveTo(x + 15 + i * 18, y + 10);
+    ctx.lineTo(x + 15 + i * 18, y + h * 0.78);
+    ctx.strokeStyle = 'rgba(80,80,80,0.6)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // ASUS logo area
+  ctx.fillStyle = '#333';
+  ctx.beginPath();
+  ctx.roundRect(x + w * 0.55, y + h * 0.1, w * 0.35, h * 0.15, 3);
+  ctx.fill();
+  ctx.fillStyle = '#aaa';
+  ctx.font = 'bold 11px Arial';
+  ctx.fillText('ASUS', x + w * 0.57, y + h * 0.2);
+
+  // TAICHI text
+  ctx.fillStyle = '#777';
+  ctx.font = 'bold 9px Arial';
+  ctx.fillText('TAICHI', x + w * 0.57, y + h * 0.28);
+
+  // AMD Radeon badge
+  ctx.fillStyle = '#e00';
+  ctx.beginPath();
+  ctx.roundRect(x + 15, y + h * 0.1, 55, 20, 3);
+  ctx.fill();
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 8px Arial';
+  ctx.fillText('AMD Radeon', x + 18, y + h * 0.1 + 13);
+
+  // Backplate
+  ctx.fillStyle = '#1a1a1a';
+  ctx.beginPath();
+  ctx.roundRect(x + 5, y + h * 0.84, w - 10, h * 0.14, 4);
+  ctx.fill();
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(x + 5, y + h * 0.84, w - 10, h * 0.14);
+
+  // Power connector (red LED)
+  ctx.fillStyle = '#e00';
+  ctx.beginPath();
+  ctx.arc(x + w - 20, y + h * 0.88, 4, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.shadowColor = '#ff0000';
+  ctx.shadowBlur = 8;
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  // PCIe fingers
+  ctx.fillStyle = '#ffd700';
+  for (let i = 0; i < 12; i++) {
+    ctx.fillRect(x + 10 + i * 8, y + h - 4, 5, 4);
+  }
+
+  // Outer border
+  ctx.strokeStyle = '#444';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 8);
+  ctx.stroke();
+}
+
+// Draw tubing
+function drawTube(points, color) {
+  if (points.length < 2) return;
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, points[0].y);
+  for (let i = 1; i < points.length; i++) {
+    ctx.lineTo(points[i].x, points[i].y);
+  }
+  ctx.strokeStyle = '#111';
+  ctx.lineWidth = 12;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, points[0].y);
+  for (let i = 1; i < points.length; i++) {
+    ctx.lineTo(points[i].x, points[i].y);
+  }
+  ctx.strokeStyle = '#2a2a2a';
+  ctx.lineWidth = 8;
+  ctx.stroke();
+
+  // Highlight
+  ctx.beginPath();
+  ctx.moveTo(points[0].x - 2, points[0].y - 2);
+  for (let i = 1; i < points.length; i++) {
+    ctx.lineTo(points[i].x - 2, points[i].y - 2);
+  }
+  ctx.strokeStyle = 'rgba(255,255,255,0.07)';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+}
+
+// Draw motherboard
+function drawMotherboard(x, y, w, h) {
+  ctx.fillStyle = '#1a2a1a';
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 4);
+  ctx.fill();
+
+  // PCB texture
+  for (let i = 0; i < 5; i++) {
+    for (let j = 0; j < 4; j++) {
+      ctx.fillStyle = 'rgba(0,80,0,0.15)';
+      ctx.fillRect(x + 5 + i * (w/5), y + 5 + j * (h/4), w/5 - 3, h/4 - 3);
+    }
+  }
+
+  // CPU socket area
+  ctx.strokeStyle = '#555';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(x + 15, y + 15, 70, 70);
+  ctx.fillStyle = '#111';
+  ctx.fillRect(x + 16, y + 16, 68, 68);
+
+  // RAM slots
+  for (let i = 0; i < 4; i++) {
+    ctx.fillStyle = '#222';
+    ctx.fillRect(x + w - 22, y + 15 + i * 28, 16, 24);
+    const ramColor = rgb(i * 50);
+    ctx.fillStyle = ramColor;
+    ctx.fillRect(x + w - 21, y + 15 + i * 28, 2, 24);
+  }
+
+  // NVME slot
+  ctx.fillStyle = '#333';
+  ctx.fillRect(x + 15, y + h - 30, 80, 10);
+
+  ctx.strokeStyle = '#2a4a2a';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 4);
+  ctx.stroke();
+}
+
+// Draw pump head / AIO block
+function drawPumpHead(cx, cy, r) {
+  // Body
+  const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+  g.addColorStop(0, '#333');
+  g.addColorStop(1, '#111');
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.fillStyle = g;
+  ctx.fill();
+
+  // RGB ring
+  const ring2 = ctx.createRadialGradient(cx, cy, r * 0.6, cx, cy, r);
+  ring2.addColorStop(0, rgbAlpha(200, 0.9));
+  ring2.addColorStop(1, rgbAlpha(240, 0.7));
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.arc(cx, cy, r * 0.6, 0, Math.PI * 2, true);
+  ctx.fillStyle = ring2;
+  ctx.fill();
+
+  // Logo
+  ctx.fillStyle = 'rgba(255,255,255,0.15)';
+  ctx.beginPath();
+  ctx.arc(cx, cy, r * 0.4, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.strokeStyle = '#555';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.stroke();
+}
+
+// PSU shroud
+function drawPSU(x, y, w, h) {
+  ctx.fillStyle = '#1a1a1a';
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 6);
+  ctx.fill();
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // Vent holes
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 3; j++) {
+      ctx.beginPath();
+      ctx.arc(x + 15 + i * 18, y + 15 + j * 15, 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#111';
+      ctx.fill();
+      ctx.strokeStyle = '#333';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+
+  ctx.fillStyle = '#555';
+  ctx.font = '9px Arial';
+  ctx.fillText('PSU', x + w - 28, y + h / 2 + 4);
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+
+  // Background
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, '#0d0d12');
+  bg.addColorStop(1, '#0a0a0f');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // ─── CASE SHELL ───
+  const caseX = 40, caseY = 30, caseW = 620, caseH = 840;
+  const caseR = 18;
+
+  // Case shadow
+  ctx.shadowColor = 'rgba(0,0,0,0.8)';
+  ctx.shadowBlur = 40;
+  ctx.fillStyle = '#1a1a1a';
+  ctx.beginPath();
+  ctx.roundRect(caseX, caseY, caseW, caseH, caseR);
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  // Case body - white
+  const caseGrad = ctx.createLinearGradient(caseX, caseY, caseX + caseW, caseY + caseH);
+  caseGrad.addColorStop(0, '#f0f0f0');
+  caseGrad.addColorStop(0.3, '#e8e8e8');
+  caseGrad.addColorStop(0.7, '#d8d8d8');
+  caseGrad.addColorStop(1, '#c8c8c8');
+  ctx.fillStyle = caseGrad;
+  ctx.beginPath();
+  ctx.roundRect(caseX, caseY, caseW, caseH, caseR);
+  ctx.fill();
+
+  // Glass panel (tempered glass look)
+  const glassGrad = ctx.createLinearGradient(caseX + 10, caseY + 10, caseX + caseW - 10, caseY + caseH - 10);
+  glassGrad.addColorStop(0, 'rgba(20,20,30,0.97)');
+  glassGrad.addColorStop(1, 'rgba(10,10,15,0.97)');
+  ctx.fillStyle = glassGrad;
+  ctx.beginPath();
+  ctx.roundRect(caseX + 10, caseY + 10, caseW - 20, caseH - 20, caseR - 4);
+  ctx.fill();
+
+  // Glass reflection
+  const ref = ctx.createLinearGradient(caseX + 10, caseY + 10, caseX + 80, caseY + caseH - 10);
+  ref.addColorStop(0, 'rgba(255,255,255,0.06)');
+  ref.addColorStop(0.3, 'rgba(255,255,255,0.02)');
+  ref.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = ref;
+  ctx.beginPath();
+  ctx.roundRect(caseX + 10, caseY + 10, caseW - 20, caseH - 20, caseR - 4);
+  ctx.fill();
+
+  // Case edge highlight
+  ctx.strokeStyle = 'rgba(255,255,255,0.6)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(caseX, caseY, caseW, caseH, caseR);
+  ctx.stroke();
+
+  // Lian Li logo on bottom
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  ctx.font = 'bold 13px Arial';
+  ctx.fillText('LIAN LI  A3', caseX + 20, caseY + caseH - 15);
+
+  // ─── RGB ambient light on glass from inside ───
+  const ambientColors = [
+    { x: caseX + 100, y: caseY + 80, r: 140 },
+    { x: caseX + caseW - 100, y: caseY + 200, r: 120 },
+    { x: caseX + 100, y: caseY + caseH - 150, r: 100 },
+  ];
+  ambientColors.forEach((a, i) => {
+    const ag = ctx.createRadialGradient(a.x, a.y, 0, a.x, a.y, a.r);
+    ag.addColorStop(0, rgbAlpha(i * 120, 0.12));
+    ag.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = ag;
+    ctx.beginPath();
+    ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  // ─── TOP RADIATOR (360mm) + 3 FANS ───
+  drawRadiator(85, 50, 530, 70);
+
+  // Top 3 fans
+  drawFan(175, 85, 44, 0);
+  drawFan(350, 85, 44, 80);
+  drawFan(525, 85, 44, 160);
+
+  // ─── MOTHERBOARD ───
+  drawMotherboard(80, 160, 160, 260);
+
+  // ─── AIO PUMP HEAD on CPU ───
+  drawPumpHead(155, 225, 30);
+
+  // ─── TUBING ───
+  // From radiator down to pump
+  drawTube([
+    { x: 200, y: 120 }, { x: 200, y: 145 }, { x: 155, y: 145 }, { x: 155, y: 195 }
+  ]);
+  drawTube([
+    { x: 260, y: 120 }, { x: 260, y: 150 }, { x: 185, y: 190 }, { x: 185, y: 200 }
+  ]);
+
+  // From pump to GPU water block
+  drawTube([
+    { x: 155, y: 255 }, { x: 155, y: 290 }, { x: 310, y: 290 }, { x: 380, y: 330 }
+  ]);
+  drawTube([
+    { x: 185, y: 255 }, { x: 185, y: 280 }, { x: 320, y: 280 }, { x: 380, y: 350 }
+  ]);
+
+  // ─── GPU (AMD ASUS TAICHI) ───
+  drawGPU(290, 320, 340, 110);
+
+  // GPU waterblock
+  const wbGrad = ctx.createLinearGradient(530, 330, 620, 420);
+  wbGrad.addColorStop(0, '#1a1a1a');
+  wbGrad.addColorStop(1, '#111');
+  ctx.fillStyle = wbGrad;
+  ctx.beginPath();
+  ctx.roundRect(560, 325, 60, 100, 6);
+  ctx.fill();
+
+  const wbRgb = ctx.createRadialGradient(590, 375, 0, 590, 375, 45);
+  wbRgb.addColorStop(0, rgbAlpha(300, 0.5));
+  wbRgb.addColorStop(1, rgbAlpha(340, 0.1));
+  ctx.fillStyle = wbRgb;
+  ctx.beginPath();
+  ctx.roundRect(560, 325, 60, 100, 6);
+  ctx.fill();
+
+  ctx.strokeStyle = '#444';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(560, 325, 60, 100);
+
+  // More tubing from waterblock back up
+  drawTube([
+    { x: 590, y: 325 }, { x: 590, y: 200 }, { x: 440, y: 120 }
+  ]);
+  drawTube([
+    { x: 565, y: 420 }, { x: 565, y: 460 }
+  ]);
+
+  // ─── RIGHT SIDE FANS (3 fans) ───
+  drawFan(575, 290, 55, 40);
+  drawFan(575, 480, 55, 120);
+  drawFan(575, 670, 55, 200);
+
+  // ─── PSU SHROUD ───
+  drawPSU(80, 690, 420, 100);
+
+  // Cable bundles (decorative)
+  ctx.strokeStyle = '#222';
+  ctx.lineWidth = 6;
+  ctx.beginPath();
+  ctx.moveTo(200, 440);
+  ctx.bezierCurveTo(220, 500, 180, 560, 200, 620);
+  ctx.stroke();
+
+  ctx.strokeStyle = '#1a1a1a';
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.moveTo(210, 440);
+  ctx.bezierCurveTo(230, 500, 195, 565, 210, 625);
+  ctx.stroke();
+
+  // ─── CASE FRAME ELEMENTS ───
+  // Top frame bar
+  ctx.fillStyle = '#d0d0d0';
+  ctx.fillRect(caseX + 10, caseY + 10, caseW - 20, 6);
+
+  // Bottom frame bar
+  ctx.fillStyle = '#c0c0c0';
+  ctx.fillRect(caseX + 10, caseY + caseH - 16, caseW - 20, 6);
+
+  // Front I/O panel (top right area)
+  ctx.fillStyle = '#bbb';
+  ctx.beginPath();
+  ctx.roundRect(caseX + caseW - 120, caseY + 12, 108, 22, 3);
+  ctx.fill();
+
+  // USB/audio ports
+  for (let i = 0; i < 3; i++) {
+    ctx.fillStyle = '#333';
+    ctx.beginPath();
+    ctx.roundRect(caseX + caseW - 115 + i * 30, caseY + 17, 16, 12, 2);
+    ctx.fill();
+  }
+
+  // Power button
+  const pbGlow = ctx.createRadialGradient(caseX + caseW - 25, caseY + 23, 0, caseX + caseW - 25, caseY + 23, 10);
+  pbGlow.addColorStop(0, 'rgba(0,200,255,0.8)');
+  pbGlow.addColorStop(1, 'rgba(0,200,255,0)');
+  ctx.fillStyle = pbGlow;
+  ctx.beginPath();
+  ctx.arc(caseX + caseW - 25, caseY + 23, 10, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#222';
+  ctx.beginPath();
+  ctx.arc(caseX + caseW - 25, caseY + 23, 6, 0, Math.PI * 2);
+  ctx.fill();
+
+  // ─── LABEL OVERLAY ───
+  const labels = [
+    { x: 350, y: 75, text: '360mm AIO Radiator' },
+    { x: 20, y: 290, text: 'Motherboard' },
+    { x: 350, y: 400, text: 'ASUS TAICHI — AMD Radeon' },
+    { x: 615, y: 285, text: 'Fans RGB' },
+    { x: 250, y: 745, text: 'PSU Shroud' },
+  ];
+
+  labels.forEach(l => {
+    ctx.fillStyle = 'rgba(255,255,255,0.65)';
+    ctx.font = '10px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(l.text, l.x, l.y);
+  });
+  ctx.textAlign = 'left';
+
+  tick++;
+  requestAnimationFrame(draw);
+}
+
+draw();
+</script>
+</body>
+</html>

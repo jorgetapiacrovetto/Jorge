@@ -1,1 +1,611 @@
-PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVzIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgo8dGl0bGU+TGlhbiBMaSBBMyBXaGl0ZSAtIFR1IEJ1aWxkPC90aXRsZT4KPHN0eWxlPgogICogeyBtYXJnaW46IDA7IHBhZGRpbmc6IDA7IGJveC1zaXppbmc6IGJvcmRlci1ib3g7IH0KICBib2R5IHsKICAgIGJhY2tncm91bmQ6ICMwYTBhMGY7CiAgICBkaXNwbGF5OiBmbGV4OwogICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAgbWluLWhlaWdodDogMTAwdmg7CiAgICBmb250LWZhbWlseTogJ1NlZ29lIFVJJywgc2Fucy1zZXJpZjsKICAgIGNvbG9yOiAjZmZmOwogICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICAgIGdhcDogMjBweDsKICAgIHBhZGRpbmc6IDIwcHg7CiAgfQogIGgxIHsKICAgIGZvbnQtc2l6ZTogMS40cmVtOwogICAgY29sb3I6ICNjY2M7CiAgICBsZXR0ZXItc3BhY2luZzogMnB4OwogICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsKICB9CiAgLnNwZWNzIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBnYXA6IDEycHg7CiAgICBmbGV4LXdyYXA6IHdyYXA7CiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsKICAgIGZvbnQtc2l6ZTogMC43NXJlbTsKICAgIGNvbG9yOiAjODg4OwogIH0KICAuc3BlYy10YWcgewogICAgYmFja2dyb3VuZDogIzFhMWEyZTsKICAgIGJvcmRlcjogMXB4IHNvbGlkICMzMzM7CiAgICBwYWRkaW5nOiA0cHggMTBweDsKICAgIGJvcmRlci1yYWRpdXM6IDIwcHg7CiAgfQogIGNhbnZhcyB7CiAgICBib3JkZXItcmFkaXVzOiA4cHg7CiAgICBib3gtc2hhZG93OiAwIDAgNjBweCByZ2JhKDAsMjAwLDI1NSwwLjE1KTsKICB9Cjwvc3R5bGU+CjwvaGVhZD4KPGJvZHk+CjxoMT5MaWFuIExpIEEzIFdoaXRlIOKAlCBUdSBCdWlsZDwvaDE+CjxkaXYgY2xhc3M9InNwZWNzIj4KICA8c3BhbiBjbGFzcz0ic3BlYy10YWciPkFNRCBHUFU8L3NwYW4+CiAgPHNwYW4gY2xhc3M9InNwZWMtdGFnIj5BU1VTIFRBSUNISTwvc3Bhbj4KICA8c3BhbiBjbGFzcz0ic3BlYy10YWciPkxpcXVpZCBDb29saW5nPC9zcGFuPgogIDxzcGFuIGNsYXNzPSJzcGVjLXRhZyI+UkdCIEZhbnM8L3NwYW4+CiAgPHNwYW4gY2xhc3M9InNwZWMtdGFnIj5XaGl0ZSBDYXNlPC9zcGFuPgo8L2Rpdj4KPGNhbnZhcyBpZD0iYyIgd2lkdGg9IjcwMCIgaGVpZ2h0PSI5MDAiPjwvY2FudmFzPgoKPHNjcmlwdD4KY29uc3QgY2FudmFzID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2MnKTsKY29uc3QgY3R4ID0gY2FudmFzLmdldENvbnRleHQoJzJkJyk7CmNvbnN0IFcgPSBjYW52YXMud2lkdGgsIEggPSBjYW52YXMuaGVpZ2h0OwoKbGV0IHRpY2sgPSAwOwoKZnVuY3Rpb24gcmdiKG9mZnNldCkgewogIGNvbnN0IHQgPSAodGljayArIG9mZnNldCkgKiAwLjAyOwogIGNvbnN0IHIgPSBNYXRoLmZsb29yKE1hdGguc2luKHQpICogMTI3ICsgMTI4KTsKICBjb25zdCBnID0gTWF0aC5mbG9vcihNYXRoLnNpbih0ICsgMi4wOTQpICogMTI3ICsgMTI4KTsKICBjb25zdCBiID0gTWF0aC5mbG9vcihNYXRoLnNpbih0ICsgNC4xODgpICogMTI3ICsgMTI4KTsKICByZXR1cm4gYHJnYigke3J9LCR7Z30sJHtifSlgOwp9CgpmdW5jdGlvbiByZ2JBbHBoYShvZmZzZXQsIGEpIHsKICBjb25zdCB0ID0gKHRpY2sgKyBvZmZzZXQpICogMC4wMjsKICBjb25zdCByID0gTWF0aC5mbG9vcihNYXRoLnNpbih0KSAqIDEyNyArIDEyOCk7CiAgY29uc3QgZyA9IE1hdGguZmxvb3IoTWF0aC5zaW4odCArIDIuMDk0KSAqIDEyNyArIDEyOCk7CiAgY29uc3QgYiA9IE1hdGguZmxvb3IoTWF0aC5zaW4odCArIDQuMTg4KSAqIDEyNyArIDEyOCk7CiAgcmV0dXJuIGByZ2JhKCR7cn0sJHtnfSwke2J9LCR7YX0pYDsKfQoKZnVuY3Rpb24gZHJhd0ZhbihjeCwgY3ksIHJhZGl1cywgb2Zmc2V0KSB7CiAgY29uc3QgZ2xvdyA9IGN0eC5jcmVhdGVSYWRpYWxHcmFkaWVudChjeCwgY3ksIHJhZGl1cyAqIDAuNiwgY3gsIGN5LCByYWRpdXMgKyA4KTsKICBnbG93LmFkZENvbG9yU3RvcCgwLCByZ2JBbHBoYShvZmZzZXQsIDApKTsKICBnbG93LmFkZENvbG9yU3RvcCgwLjcsIHJnYkFscGhhKG9mZnNldCwgMC40KSk7CiAgZ2xvdy5hZGRDb2xvclN0b3AoMSwgcmdiQWxwaGEob2Zmc2V0LCAwKSk7CiAgY3R4LmJlZ2luUGF0aCgpOwogIGN0eC5hcmMoY3gsIGN5LCByYWRpdXMgKyA4LCAwLCBNYXRoLlBJICogMik7CiAgY3R4LmZpbGxTdHlsZSA9IGdsb3c7CiAgY3R4LmZpbGwoKTsKCiAgY3R4LmJlZ2luUGF0aCgpOwogIGN0eC5hcmMoY3gsIGN5LCByYWRpdXMsIDAsIE1hdGguUEkgKiAyKTsKICBjdHguc3Ryb2tlU3R5bGUgPSAnI2RkZCc7CiAgY3R4LmxpbmVXaWR0aCA9IDM7CiAgY3R4LnN0cm9rZSgpOwogIGN0eC5maWxsU3R5bGUgPSAnI2U4ZThlOCc7CiAgY3R4LmZpbGwoKTsKCiAgY3R4LmJlZ2luUGF0aCgpOwogIGN0eC5hcmMoY3gsIGN5LCByYWRpdXMgKiAwLjg1LCAwLCBNYXRoLlBJICogMik7CiAgY3R4LnN0cm9rZVN0eWxlID0gJyNiYmInOwogIGN0eC5saW5lV2lkdGggPSAxLjU7CiAgY3R4LnN0cm9rZSgpOwoKICBjb25zdCByaW5nID0gY3R4LmNyZWF0ZVJhZGlhbEdyYWRpZW50KGN4LCBjeSwgcmFkaXVzICogMC42LCBjeCwgY3ksIHJhZGl1cyAqIDAuODUpOwogIHJpbmcuYWRkQ29sb3JTdG9wKDAsIHJnYkFscGhhKG9mZnNldCwgMC44KSk7CiAgcmluZy5hZGRDb2xvclN0b3AoMSwgcmdiQWxwaGEob2Zmc2V0ICsgNDAsIDAuOCkpOwogIGN0eC5iZWdpblBhdGgoKTsKICBjdHguYXJjKGN4LCBjeSwgcmFkaXVzICogMC44NSwgMCwgTWF0aC5QSSAqIDIpOwogIGN0eC5hcmMoY3gsIGN5LCByYWRpdXMgKiAwLjYwLCAwLCBNYXRoLlBJICogMiwgdHJ1ZSk7CiAgY3R4LmZpbGxTdHlsZSA9IHJpbmc7CiAgY3R4LmZpbGwoKTsKCiAgY3R4LnNhdmUoKTsKICBjdHgudHJhbnNsYXRlKGN4LCBjeSk7CiAgY3R4LnJvdGF0ZSh0aWNrICogMC4wOCk7CiAgZm9yIChsZXQgaSA9IDA7IGkgPCA5OyBpKyspIHsKICAgIGN0eC5zYXZlKCk7CiAgICBjdHgucm90YXRlKChpIC8gOSkgKiBNYXRoLlBJICogMik7CiAgICBjdHguYmVnaW5QYXRoKCk7CiAgICBjdHguZWxsaXBzZShyYWRpdXMgKiAwLjI4LCAwLCByYWRpdXMgKiAwLjIyLCByYWRpdXMgKiAwLjA4LCAwLjMsIDAsIE1hdGguUEkgKiAyKTsKICAgIGN0eC5maWxsU3R5bGUgPSAncmdiYSgxODAsMTgwLDE5MCwwLjg1KSc7CiAgICBjdHguZmlsbCgpOwogICAgY3R4LnJlc3RvcmUoKTsKICB9CiAgY3R4LmJlZ2luUGF0aCgpOwogIGN0eC5hcmMoMCwgMCwgcmFkaXVzICogMC4xMiwgMCwgTWF0aC5QSSAqIDIpOwogIGN0eC5maWxsU3R5bGUgPSAnIzU1NSc7CiAgY3R4LmZpbGwoKTsKICBjdHgucmVzdG9yZSgpOwp9CgpmdW5jdGlvbiBkcmF3UmFkaWF0b3IoeCwgeSwgdywgaCkgewogIGN0eC5maWxsU3R5bGUgPSAnIzJhMmEyYSc7CiAgY3R4LmZpbGxSZWN0KHgsIHksIHcsIGgpOwogIGNvbnN0IGZpbkNvdW50ID0gMjg7CiAgZm9yIChsZXQgaSA9IDA7IGkgPCBmaW5Db3VudDsgaSsrKSB7CiAgICBjb25zdCBmeCA9IHggKyAodyAvIGZpbkNvdW50KSAqIGk7CiAgICBjdHguZmlsbFN0eWxlID0gaSAlIDIgPT09IDAgPyAnIzMzMycgOiAnIzIyMic7CiAgICBjdHguZmlsbFJlY3QoZngsIHksIHcgLyBmaW5Db3VudCwgaCk7CiAgfQogIGN0eC5zdHJva2VTdHlsZSA9ICcjNTU1JzsKICBjdHgubGluZVdpZHRoID0gMjsKICBjdHguc3Ryb2tlUmVjdCh4LCB5LCB3LCBoKTsKfQoKZnVuY3Rpb24gZHJhd0dQVSh4LCB5LCB3LCBoKSB7CiAgY29uc3QgZ3JhZCA9IGN0eC5jcmVhdGVMaW5lYXJHcmFkaWVudCh4LCB5LCB4LCB5ICsgaCk7CiAgZ3JhZC5hZGRDb2xvclN0b3AoMCwgJyMxYTFhMWEnKTsKICBncmFkLmFkZENvbG9yU3RvcCgxLCAnIzExMScpOwogIGN0eC5maWxsU3R5bGUgPSBncmFkOwogIGN0eC5iZWdpblBhdGgoKTsKICBjdHgucm91bmRSZWN0KHgsIHksIHcsIGgsIDgpOwogIGN0eC5maWxsKCk7CgogIGNvbnN0IHNocm91ZCA9IGN0eC5jcmVhdGVMaW5lYXJHcmFkaWVudCh4LCB5LCB4LCB5ICsgaCAqIDAuNzUpOwogIHNocm91ZC5hZGRDb2xvclN0b3AoMCwgJyMxYzFjMWMnKTsKICBzaHJvdWQuYWRkQ29sb3JTdG9wKDAuNSwgJyMyMjInKTsKICBzaHJvdWQuYWRkQ29sb3JTdG9wKDEsICcjMTgxODE4Jyk7CiAgY3R4LmZpbGxTdHlsZSA9IHNocm91ZDsKICBjdHguYmVnaW5QYXRoKCk7CiAgY3R4LnJvdW5kUmVjdCh4ICsgNSwgeSArIDUsIHcgLSAxMCwgaCAqIDAuODIsIDYpOwogIGN0eC5maWxsKCk7CgogIGZvciAobGV0IGkgPSAwOyBpIDwgNjsgaSsrKSB7CiAgICBjdHguYmVnaW5QYXRoKCk7CiAgICBjdHgubW92ZVRvKHggKyAxNSArIGkgKiAxOCwgeSArIDEwKTsKICAgIGN0eC5saW5lVG8oeCArIDE1ICsgaSAqIDE4LCB5ICsgaCAqIDAuNzgpOwogICAgY3R4LnN0cm9rZVN0eWxlID0gJ3JnYmEoODAsODAsODAsMC42KSc7CiAgICBjdHgubGluZVdpZHRoID0gMTsKICAgIGN0eC5zdHJva2UoKTsKICB9CgogIGN0eC5maWxsU3R5bGUgPSAnIzMzMyc7CiAgY3R4LmJlZ2luUGF0aCgpOwogIGN0eC5yb3VuZFJlY3QoeCArIHcgKiAwLjU1LCB5ICsgaCAqIDAuMSwgdyAqIDAuMzUsIGggKiAwLjE1LCAzKTsKICBjdHguZmlsbCgpOwogIGN0eC5maWxsU3R5bGUgPSAnI2FhYSc7CiAgY3R4LmZvbnQgPSAnYm9sZCAxMXB4IEFyaWFsJzsKICBjdHguZmlsbFRleHQoJ0FTVVMnLCB4ICsgdyAqIDAuNTcsIHkgKyBoICogMC4yKTsKICBjdHguZmlsbFN0eWxlID0gJyM3NzcnOwogIGN0eC5mb250ID0gJ2JvbGQgOXB4IEFyaWFsJzsKICBjdHguZmlsbFRleHQoJ1RBSUNISScsIHggKyB3ICogMC41NywgeSArIGggKiAwLjI4KTsKCiAgY3R4LmZpbGxTdHlsZSA9ICcjZTAwJzsKICBjdHguYmVnaW5QYXRoKCk7CiAgY3R4LnJvdW5kUmVjdCh4ICsgMTUsIHkgKyBoICogMC4xLCA1NSwgMjAsIDMpOwogIGN0eC5maWxsKCk7CiAgY3R4LmZpbGxTdHlsZSA9ICcjZmZmJzsKICBjdHguZm9udCA9ICdib2xkIDhweCBBcmlhbCc7CiAgY3R4LmZpbGxUZXh0KCdBTUQgUmFkZW9uJywgeCArIDE4LCB5ICsgaCAqIDAuMSArIDEzKTsKCiAgY3R4LmZpbGxTdHlsZSA9ICcjMWExYTFhJzsKICBjdHguYmVnaW5QYXRoKCk7CiAgY3R4LnJvdW5kUmVjdCh4ICsgNSwgeSArIGggKiAwLjg0LCB3IC0gMTAsIGggKiAwLjE0LCA0KTsKICBjdHguZmlsbCgpOwogIGN0eC5zdHJva2VTdHlsZSA9ICcjMzMzJzsKICBjdHgubGluZVdpZHRoID0gMTsKICBjdHguc3Ryb2tlUmVjdCh4ICsgNSwgeSArIGggKiAwLjg0LCB3IC0gMTAsIGggKiAwLjE0KTsKCiAgY3R4LmZpbGxTdHlsZSA9ICcjZTAwJzsKICBjdHguYmVnaW5QYXRoKCk7CiAgY3R4LmFyYyh4ICsgdyAtIDIwLCB5ICsgaCAqIDAuODgsIDQsIDAsIE1hdGguUEkgKiAyKTsKICBjdHguZmlsbCgpOwogIGN0eC5zaGFkb3dDb2xvciA9ICcjZmYwMDAwJzsKICBjdHguc2hhZG93Qmx1ciA9IDg7CiAgY3R4LmZpbGwoKTsKICBjdHguc2hhZG93Qmx1ciA9IDA7CgogIGN0eC5maWxsU3R5bGUgPSAnI2ZmZDcwMCc7CiAgZm9yIChsZXQgaSA9IDA7IGkgPCAxMjsgaSsrKSB7CiAgICBjdHguZmlsbFJlY3QoeCArIDEwICsgaSAqIDgsIHkgKyBoIC0gNCwgNSwgNCk7CiAgfQoKICBjdHguc3Ryb2tlU3R5bGUgPSAnIzQ0NCc7CiAgY3R4LmxpbmVXaWR0aCA9IDI7CiAgY3R4LmJlZ2luUGF0aCgpOwogIGN0eC5yb3VuZFJlY3QoeCwgeSwgdywgaCwgOCk7CiAgY3R4LnN0cm9rZSgpOwp9CgpmdW5jdGlvbiBkcmF3VHViZShwb2ludHMpIHsKICBpZiAocG9pbnRzLmxlbmd0aCA8IDIpIHJldHVybjsKICBjdHguYmVnaW5QYXRoKCk7CiAgY3R4Lm1vdmVUbyhwb2ludHNbMF0ueCwgcG9pbnRzWzBdLnkpOwogIGZvciAobGV0IGkgPSAxOyBpIDwgcG9pbnRzLmxlbmd0aDsgaSsrKSBjdHgubGluZVRvKHBvaW50c1tpXS54LCBwb2ludHNbaV0ueSk7CiAgY3R4LnN0cm9rZVN0eWxlID0gJyMxMTEnOwogIGN0eC5saW5lV2lkdGggPSAxMjsKICBjdHgubGluZUNhcCA9ICdyb3VuZCc7CiAgY3R4LmxpbmVKb2luID0gJ3JvdW5kJzsKICBjdHguc3Ryb2tlKCk7CiAgY3R4LmJlZ2luUGF0aCgpOwogIGN0eC5tb3ZlVG8ocG9pbnRzWzBdLngsIHBvaW50c1swXS55KTsKICBmb3IgKGxldCBpID0gMTsgaSA8IHBvaW50cy5sZW5ndGg7IGkrKykgY3R4LmxpbmVUbyhwb2ludHNbaV0ueCwgcG9pbnRzW2ldLnkpOwogIGN0eC5zdHJva2VTdHlsZSA9ICcjMmEyYTJhJzsKICBjdHgubGluZVdpZHRoID0gODsKICBjdHguc3Ryb2tlKCk7Cn0KCmZ1bmN0aW9uIGRyYXdNb3RoZXJib2FyZCh4LCB5LCB3LCBoKSB7CiAgY3R4LmZpbGxTdHlsZSA9ICcjMWEyYTFhJzsKICBjdHguYmVnaW5QYXRoKCk7CiAgY3R4LnJvdW5kUmVjdCh4LCB5LCB3LCBoLCA0KTsKICBjdHguZmlsbCgpOwogIGZvciAobGV0IGkgPSAwOyBpIDwgNTsgaSsrKSB7CiAgICBmb3IgKGxldCBqID0gMDsgaiA8IDQ7IGorKykgewogICAgICBjdHguZmlsbFN0eWxlID0gJ3JnYmEoMCw4MCwwLDAuMTUpJzsKICAgICAgY3R4LmZpbGxSZWN0KHggKyA1ICsgaSAqICh3LzUpLCB5ICsgNSArIGogKiAoaC80KSwgdy81IC0gMywgaC80IC0gMyk7CiAgICB9CiAgfQogIGN0eC5zdHJva2VTdHlsZSA9ICcjNTU1JzsKICBjdHgubGluZVdpZHRoID0gMS41OwogIGN0eC5zdHJva2VSZWN0KHggKyAxNSwgeSArIDE1LCA3MCwgNzApOwogIGN0eC5maWxsU3R5bGUgPSAnIzExMSc7CiAgY3R4LmZpbGxSZWN0KHggKyAxNiwgeSArIDE2LCA2OCwgNjgpOwogIGZvciAobGV0IGkgPSAwOyBpIDwgNDsgaSsrKSB7CiAgICBjdHguZmlsbFN0eWxlID0gJyMyMjInOwogICAgY3R4LmZpbGxSZWN0KHggKyB3IC0gMjIsIHkgKyAxNSArIGkgKiAyOCwgMTYsIDI0KTsKICAgIGN0eC5maWxsU3R5bGUgPSByZ2IoaSAqIDUwKTsKICAgIGN0eC5maWxsUmVjdCh4ICsgdyAtIDIxLCB5ICsgMTUgKyBpICogMjgsIDIsIDI0KTsKICB9CiAgY3R4LmZpbGxTdHlsZSA9ICcjMzMzJzsKICBjdHguZmlsbFJlY3QoeCArIDE1LCB5ICsgaCAtIDMwLCA4MCwgMTApOwogIGN0eC5zdHJva2VTdHlsZSA9ICcjMmE0YTJhJzsKICBjdHgubGluZVdpZHRoID0gMTsKICBjdHguYmVnaW5QYXRoKCk7CiAgY3R4LnJvdW5kUmVjdCh4LCB5LCB3LCBoLCA0KTsKICBjdHguc3Ryb2tlKCk7Cn0KCmZ1bmN0aW9uIGRyYXdQdW1wSGVhZChjeCwgY3ksIHIpIHsKICBjb25zdCBnID0gY3R4LmNyZWF0ZVJhZGlhbEdyYWRpZW50KGN4LCBjeSwgMCwgY3gsIGN5LCByKTsKICBnLmFkZENvbG9yU3RvcCgwLCAnIzMzMycpOwogIGcuYWRkQ29sb3JTdG9wKDEsICcjMTExJyk7CiAgY3R4LmJlZ2luUGF0aCgpOwogIGN0eC5hcmMoY3gsIGN5LCByLCAwLCBNYXRoLlBJICogMik7CiAgY3R4LmZpbGxTdHlsZSA9IGc7CiAgY3R4LmZpbGwoKTsKICBjb25zdCByaW5nMiA9IGN0eC5jcmVhdGVSYWRpYWxHcmFkaWVudChjeCwgY3ksIHIgKiAwLjYsIGN4LCBjeSwgcik7CiAgcmluZzIuYWRkQ29sb3JTdG9wKDAsIHJnYkFscGhhKDIwMCwgMC45KSk7CiAgcmluZzIuYWRkQ29sb3JTdG9wKDEsIHJnYkFscGhhKDI0MCwgMC43KSk7CiAgY3R4LmJlZ2luUGF0aCgpOwogIGN0eC5hcmMoY3gsIGN5LCByLCAwLCBNYXRoLlBJICogMik7CiAgY3R4LmFyYyhjeCwgY3ksIHIgKiAwLjYsIDAsIE1hdGguUEkgKiAyLCB0cnVlKTsKICBjdHguZmlsbFN0eWxlID0gcmluZzI7CiAgY3R4LmZpbGwoKTsKICBjdHguc3Ryb2tlU3R5bGUgPSAnIzU1NSc7CiAgY3R4LmxpbmVXaWR0aCA9IDI7CiAgY3R4LmJlZ2luUGF0aCgpOwogIGN0eC5hcmMoY3gsIGN5LCByLCAwLCBNYXRoLlBJICogMik7CiAgY3R4LnN0cm9rZSgpOwp9CgpmdW5jdGlvbiBkcmF3UFNVKHgsIHksIHcsIGgpIHsKICBjdHguZmlsbFN0eWxlID0gJyMxYTFhMWEnOwogIGN0eC5iZWdpblBhdGgoKTsKICBjdHgucm91bmRSZWN0KHgsIHksIHcsIGgsIDYpOwogIGN0eC5maWxsKCk7CiAgY3R4LnN0cm9rZVN0eWxlID0gJyMzMzMnOwogIGN0eC5saW5lV2lkdGggPSAxLjU7CiAgY3R4LnN0cm9rZSgpOwogIGZvciAobGV0IGkgPSAwOyBpIDwgNDsgaSsrKSB7CiAgICBmb3IgKGxldCBqID0gMDsgaiA8IDM7IGorKykgewogICAgICBjdHguYmVnaW5QYXRoKCk7CiAgICAgIGN0eC5hcmMoeCArIDE1ICsgaSAqIDE4LCB5ICsgMTUgKyBqICogMTUsIDQsIDAsIE1hdGguUEkgKiAyKTsKICAgICAgY3R4LmZpbGxTdHlsZSA9ICcjMTExJzsKICAgICAgY3R4LmZpbGwoKTsKICAgICAgY3R4LnN0cm9rZVN0eWxlID0gJyMzMzMnOwogICAgICBjdHgubGluZVdpZHRoID0gMTsKICAgICAgY3R4LnN0cm9rZSgpOwogICAgfQogIH0KICBjdHguZmlsbFN0eWxlID0gJyM1NTUnOwogIGN0eC5mb250ID0gJzlweCBBcmlhbCc7CiAgY3R4LmZpbGxUZXh0KCdQU1UnLCB4ICsgdyAtIDI4LCB5ICsgaCAvIDIgKyA0KTsKfQoKZnVuY3Rpb24gZHJhdygpIHsKICBjdHguY2xlYXJSZWN0KDAsIDAsIFcsIEgpOwogIGNvbnN0IGJnID0gY3R4LmNyZWF0ZUxpbmVhckdyYWRpZW50KDAsIDAsIFcsIEgpOwogIGJnLmFkZENvbG9yU3RvcCgwLCAnIzBkMGQxMicpOwogIGJnLmFkZENvbG9yU3RvcCgxLCAnIzBhMGEwZicpOwogIGN0eC5maWxsU3R5bGUgPSBiZzsKICBjdHguZmlsbFJlY3QoMCwgMCwgVywgSCk7CgogIGNvbnN0IGNhc2VYID0gNDAsIGNhc2VZID0gMzAsIGNhc2VXID0gNjIwLCBjYXNlSCA9IDg0MCwgY2FzZVIgPSAxODsKICBjdHguc2hhZG93Q29sb3IgPSAncmdiYSgwLDAsMCwwLjgpJzsKICBjdHguc2hhZG93Qmx1ciA9IDQwOwogIGN0eC5maWxsU3R5bGUgPSAnIzFhMWExYSc7CiAgY3R4LmJlZ2luUGF0aCgpOwogIGN0eC5yb3VuZFJlY3QoY2FzZVgsIGNhc2VZLCBjYXNlVywgY2FzZUgsIGNhc2VSKTsKICBjdHguZmlsbCgpOwogIGN0eC5zaGFkb3dCbHVyID0gMDsKCiAgY29uc3QgY2FzZUdyYWQgPSBjdHguY3JlYXRlTGluZWFyR3JhZGllbnQoY2FzZVgsIGNhc2VZLCBjYXNlWCArIGNhc2VXLCBjYXNlWSArIGNhc2VIKTsKICBjYXNlR3JhZC5hZGRDb2xvclN0b3AoMCwgJyNmMGYwZjAnKTsKICBjYXNlR3JhZC5hZGRDb2xvclN0b3AoMC4zLCAnI2U4ZThlOCcpOwogIGNhc2VHcmFkLmFkZENvbG9yU3RvcCgwLjcsICcjZDhkOGQ4Jyk7CiAgY2FzZUdyYWQuYWRkQ29sb3JTdG9wKDEsICcjYzhjOGM4Jyk7CiAgY3R4LmZpbGxTdHlsZSA9IGNhc2VHcmFkOwogIGN0eC5iZWdpblBhdGgoKTsKICBjdHgucm91bmRSZWN0KGNhc2VYLCBjYXNlWSwgY2FzZVcsIGNhc2VILCBjYXNlUik7CiAgY3R4LmZpbGwoKTsKCiAgY29uc3QgZ2xhc3NHcmFkID0gY3R4LmNyZWF0ZUxpbmVhckdyYWRpZW50KGNhc2VYKzEwLCBjYXNlWSsxMCwgY2FzZVgrY2FzZVctMTAsIGNhc2VZK2Nhc2VIIC0xMCk7CiAgZ2xhc3NHcmFkLmFkZENvbG9yU3RvcCgwLCAncmdiYSgyMCwyMCwzMCwwLjk3KScpOwogIGdsYXNzR3JhZC5hZGRDb2xvclN0b3AoMSwgJ3JnYmEoMTAsMTAsMTUsMC45NyknKTsKICBjdHguZmlsbFN0eWxlID0gZ2xhc3NHcmFkOwogIGN0eC5iZWdpblBhdGgoKTsKICBjdHgucm91bmRSZWN0KGNhc2VYKzEwLCBjYXNlWSsxMCwgY2FzZVctMjAsIGNhc2VIIC0yMCwgY2FzZVItNCk7CiAgY3R4LmZpbGwoKTsKCiAgY29uc3QgcmVmID0gY3R4LmNyZWF0ZUxpbmVhckdyYWRpZW50KGNhc2VYKzEwLCBjYXNlWSsxMCwgY2FzZVgrODAsIGNhc2VZK2Nhc2VIIC0xMCk7CiAgcmVmLmFkZENvbG9yU3RvcCgwLCAncmdiYSgyNTUsMjU1LDI1NSwwLjA2KScpOwogIHJlZi5hZGRDb2xvclN0b3AoMC4zLCAncmdiYSgyNTUsMjU1LDI1NSwwLjAyKScpOwogIHJlZi5hZGRDb2xvclN0b3AoMSwgJ3JnYmEoMjU1LDI1NSwyNTUsMCknKTsKICBjdHguZmlsbFN0eWxlID0gcmVmOwogIGN0eC5iZWdpblBhdGgoKTsKICBjdHgucm91bmRSZWN0KGNhc2VYKzEwLCBjYXNlWSsxMCwgY2FzZVctMjAsIGNhc2VIIC0yMCwgY2FzZVItNCk7CiAgY3R4LmZpbGwoKTsKCiAgY3R4LnN0cm9rZVN0eWxlID0gJ3JnYmEoMjU1LDI1NSwyNTUsMC42KSc7CiAgY3R4LmxpbmVXaWR0aCA9IDI7CiAgY3R4LmJlZ2luUGF0aCgpOwogIGN0eC5yb3VuZFJlY3QoY2FzZVgsIGNhc2VZLCBjYXNlVywgY2FzZUgsIGNhc2VSKTsKICBjdHguc3Ryb2tlKCk7CgogIGN0eC5maWxsU3R5bGUgPSAncmdiYSgyNTUsMjU1LDI1NSwwLjUpJzsKICBjdHguZm9udCA9ICdib2xkIDEzcHggQXJpYWwnOwogIGN0eC5maWxsVGV4dCgnTElBTiBMSSAgQTMnLCBjYXNlWCArIDIwLCBjYXNlWSArIGNhc2VIIC0gMTUpOwoKICBbeyB4OiBjYXNlWCsxMDAsIHk6IGNhc2VZKzgwLCByOiAxNDAgfSwgeyB4OiBjYXNlWCtjYXNlVy0xMDAsIHk6IGNhc2VZKzIwMCwgcjogMTIwIH0sIHsgeDogY2FzZVgrMTAwLCB5OiBjYXNlWStjYXNlSC0xNTAsIHI6IDEwMCB9XS5mb3JFYWNoKChhLCBpKSA9PiB7CiAgICBjb25zdCBhZyA9IGN0eC5jcmVhdGVSYWRpYWxHcmFkaWVudChhLngsIGEueSwgMCwgYS54LCBhLnksIGEucik7CiAgICBhZy5hZGRDb2xvclN0b3AoMCwgcmdiQWxwaGEoaSoxMjAsIDAuMTIpKTsKICAgIGFnLmFkZENvbG9yU3RvcCgxLCAncmdiYSgwLDAsMCwwKScpOwogICAgY3R4LmZpbGxTdHlsZSA9IGFnOwogICAgY3R4LmJlZ2luUGF0aCgpOwogICAgY3R4LmFyYyhhLngsIGEueSwgYS5yLCAwLCBNYXRoLlBJKjIpOwogICAgY3R4LmZpbGwoKTsKICB9KTsKCiAgZHJhd1JhZGlhdG9yKDg1LCA1MCwgNTMwLCA3MCk7CiAgZHJhd0ZhbigxNzUsIDg1LCA0NCwgMCk7CiAgZHJhd0ZhbigzNTAsIDg1LCA0NCwgODApOwogIGRyYXdGYW4oNTI1LCA4NSwgNDQsIDE2MCk7CiAgZHJhd01vdGhlcmJvYXJkKDgwLCAxNjAsIDE2MCwgMjYwKTsKICBkcmF3UHVtcEhlYWQoMTU1LCAyMjUsIDMwKTsKCiAgZHJhd1R1YmUoW3sgeDoyMDAsIHk6MTIwIH0seyB4OjIwMCwgeToxNDUgfSx7IHg6MTU1LCB5OjE0NSB9LHsgeDoxNTUsIHk6MTk1IH1dKTsKICBkcmF3VHViZShbeyB4OjI2MCwgeToxMjAgfSx7IHg6MjYwLCB5OjE1MCB9LHsgeDoxODUsIHk6MTkwIH0seyB4OjE4NSwgeToyMDAgfV0pOwogIGRyYXdUdWJlKFt7IHg6MTU1LCB5OjI1NSB9LHsgeDoxNTUsIHk6MjkwIH0seyB4OjMxMCwgeToyOTAgfSx7IHg6MzgwLCB5OjMzMCB9XSk7CiAgZHJhd1R1YmUoW3sgeDoxODUsIHk6MjU1IH0seyB4OjE4NSwgeToyODAgfSx7IHg6MzIwLCB5OjI4MCB9LHsgeDozODAsIHk6MzUwIH1dKTsKCiAgZHJhd0dQVSgyOTAsIDMyMCwgMzQwLCAxMTApOwoKICBjb25zdCB3YkdyYWQgPSBjdHguY3JlYXRlTGluZWFyR3JhZGllbnQoNTMwLDMzMCw2MjAsNDIwKTsKICB3YkdyYWQuYWRkQ29sb3JTdG9wKDAsJyMxYTFhMWEnKTsKICB3YkdyYWQuYWRkQ29sb3JTdG9wKDEsJyMxMTEnKTsKICBjdHguZmlsbFN0eWxlID0gd2JHcmFkOwogIGN0eC5iZWdpblBhdGgoKTsKICBjdHgucm91bmRSZWN0KDU2MCwzMjUsNjAsMTAwLDYpOwogIGN0eC5maWxsKCk7CiAgY29uc3Qgd2JSZ2IgPSBjdHguY3JlYXRlUmFkaWFsR3JhZGllbnQoNTkwLDM3NSwwLDU5MCwzNzUsNDUpOwogIHdiUmdiLmFkZENvbG9yU3RvcCgwLHJnYkFscGhhKDMwMCwwLjUpKTsKICB3YlJnYi5hZGRDb2xvclN0b3AoMSxyZ2JBbHBoYSgzNDAsMC4xKSk7CiAgY3R4LmZpbGxTdHlsZSA9IHdiUmdiOwogIGN0eC5iZWdpblBhdGgoKTsKICBjdHgucm91bmRSZWN0KDU2MCwzMjUsNjAsMTAwLDYpOwogIGN0eC5maWxsKCk7CiAgY3R4LnN0cm9rZVN0eWxlID0gJyM0NDQnOwogIGN0eC5saW5lV2lkdGggPSAxLjU7CiAgY3R4LnN0cm9rZVJlY3QoNTYwLDMyNSw2MCwxMDApOwoKICBkcmF3VHViZShbeyB4OjU5MCwgeTozMjUgfSx7IHg6NTkwLCB5OjIwMCB9LHsgeDo0NDAsIHk6MTIwIH1dKTsKICBkcmF3VHViZShbeyB4OjU2NSwgeTo0MjAgfSx7IHg6NTY1LCB5OjQ2MCB9XSk7CgogIGRyYXdGYW4oNTc1LCAyOTAsIDU1LCA0MCk7CiAgZHJhd0Zhbig1NzUsIDQ4MCwgNTUsIDEyMCk7CiAgZHJhd0Zhbig1NzUsIDY3MCwgNTUsIDIwMCk7CiAgZHJhd1BTVSg4MCwgNjkwLCA0MjAsIDEwMCk7CgogIGN0eC5zdHJva2VTdHlsZSA9ICcjMjIyJzsKICBjdHgubGluZVdpZHRoID0gNjsKICBjdHguYmVnaW5QYXRoKCk7CiAgY3R4Lm1vdmVUbygyMDAsIDQ0MCk7CiAgY3R4LmJlemllckN1cnZlVG8oMjIwLDUwMCwxODAsNTYwLDIwMCw2MjApOwogIGN0eC5zdHJva2UoKTsKCiAgY3R4LmZpbGxTdHlsZSA9ICcjZDBkMGQwJzsKICBjdHguZmlsbFJlY3QoY2FzZVgrMTAsIGNhc2VZKzEwLCBjYXNlVy0yMCwgNik7CiAgY3R4LmZpbGxTdHlsZSA9ICcjYzBjMGMwJzsKICBjdHguZmlsbFJlY3QoY2FzZVgrMTAsIGNhc2VZK2Nhc2VIIC0xNiwgY2FzZVctMjAsIDYpOwoKICBjdHguZmlsbFN0eWxlID0gJyNiYmInOwogIGN0eC5iZWdpblBhdGgoKTsKICBjdHgucm91bmRSZWN0KGNhc2VYK2Nhc2VXLTE2MCwgY2FzZVkrMTIsIDE0OCwgMjIsIDMpOwogIGN0eC5maWxsKCk7CiAgZm9yIChsZXQgaSA9IDA7IGkgPCAzOyBpKyspIHsKICAgIGN0eC5maWxsU3R5bGUgPSAnIzMzMyc7CiAgICBjdHguYmVnaW5QYXRoKCk7CiAgICBjdHgucm91bmRSZWN0KGNhc2VYK2Nhc2VXLTE1NSArIGkqMzAsIGNhc2VZKzE3LCAxNiwgMTIsIDIpOwogICAgY3R4LmZpbGwoKTsKICB9CgogIGNvbnN0IHBiR2xvdyA9IGN0eC5jcmVhdGVSYWRpYWxHcmFkaWVudChjYXNlWCtjYXNlVy0yNSwgY2FzZVkrMjMsIDAsIGNhc2VYK2Nhc2VXLTI1LCBjYXNlWSsyMywgMTApOwogIHBiR2xvdy5hZGRDb2xvclN0b3AoMCwgJ3JnYmEoMCwyMDAsMjU1LDAuOCknKTsKICBwYkdsb3cuYWRkQ29sb3JTdG9wKDEsICdyZ2JhKDAsMjAwLDI1NSwwKScpOwogIGN0eC5maWxsU3R5bGUgPSBwYkdsb3c7CiAgY3R4LmJlZ2luUGF0aCgpOwogIGN0eC5hcmMoY2FzZVgrY2FzZVctMjUsIGNhc2VZKzIzLCAxMCwgMCwgTWF0aC5QSSoyKTsKICBjdHguZmlsbCgpOwogIGN0eC5maWxsU3R5bGUgPSAnIzIyMic7CiAgY3R4LmJlZ2luUGF0aCgpOwogIGN0eC5hcmMoY2FzZVgrY2FzZVctMjUsIGNhc2VZKzIzLCA2LCAwLCBNYXRoLlBJKjIpOwogIGN0eC5maWxsKCk7CgogIFt7IHg6MzUwLCB5Ojc1LCB0ZXh0OiczNjBtbSBBSU8gUmFkaWF0b3InIH0seyB4OjIwLCB5OjI5MCwgdGV4dDonTW90aGVyYm9hcmQnIH0seyB4OjM1MCwgeTo0MDAsIHRleHQ6J0FTVVMgVEFJQ0hJIOKAlCBBTUQgUmFkZW9uJyB9LHsgeDo2MTUsIHk6Mjg1LCB0ZXh0OidGYW5zIFJHQicgfSx7IHg6MjUwLCB5Ojc0NSwgdGV4dDonUFNVIFNocm91ZCcgfV0uZm9yRWFjaChsID0+IHsKICAgIGN0eC5maWxsU3R5bGUgPSAncmdiYSgyNTUsMjU1LDI1NSwwLjY1KSc7CiAgICBjdHguZm9udCA9ICcxMHB4IEFyaWFsJzsKICAgIGN0eC50ZXh0QWxpZ24gPSAnY2VudGVyJzsKICAgIGN0eC5maWxsVGV4dChsLnRleHQsIGwueCwgbC55KTsKICB9KTsKICBjdHgudGV4dEFsaWduID0gJ2xlZnQnOwoKICB0aWNrKys7CiAgcmVxdWVzdEFuaW1hdGlvbkZyYW1lKGRyYXcpOwp9CgpkcmF3KCk7Cjwvc2NyaXB0Pgo8L2JvZHk+CjwvaHRtbD4K
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lian Li A3 White - Tu Build</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    color: #fff;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 1.4rem;
+    color: #ccc;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .specs {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #888;
+  }
+  .spec-tag {
+    background: #1a1a2e;
+    border: 1px solid #333;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  canvas {
+    border-radius: 8px;
+    box-shadow: 0 0 60px rgba(0,200,255,0.15);
+  }
+</style>
+</head>
+<body>
+<h1>Lian Li A3 White — Tu Build</h1>
+<div class="specs">
+  <span class="spec-tag">AMD GPU</span>
+  <span class="spec-tag">ASUS TAICHI</span>
+  <span class="spec-tag">Liquid Cooling</span>
+  <span class="spec-tag">RGB Fans</span>
+  <span class="spec-tag">White Case</span>
+</div>
+<canvas id="c" width="700" height="900"></canvas>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+
+let tick = 0;
+
+// RGB cycle
+function rgb(offset) {
+  const t = (tick + offset) * 0.02;
+  const r = Math.floor(Math.sin(t) * 127 + 128);
+  const g = Math.floor(Math.sin(t + 2.094) * 127 + 128);
+  const b = Math.floor(Math.sin(t + 4.188) * 127 + 128);
+  return `rgb(${r},${g},${b})`;
+}
+
+function rgbAlpha(offset, a) {
+  const t = (tick + offset) * 0.02;
+  const r = Math.floor(Math.sin(t) * 127 + 128);
+  const g = Math.floor(Math.sin(t + 2.094) * 127 + 128);
+  const b = Math.floor(Math.sin(t + 4.188) * 127 + 128);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
+// Draw a single RGB fan
+function drawFan(cx, cy, radius, offset) {
+  // Outer ring glow
+  const glow = ctx.createRadialGradient(cx, cy, radius * 0.6, cx, cy, radius + 8);
+  glow.addColorStop(0, rgbAlpha(offset, 0));
+  glow.addColorStop(0.7, rgbAlpha(offset, 0.4));
+  glow.addColorStop(1, rgbAlpha(offset, 0));
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius + 8, 0, Math.PI * 2);
+  ctx.fillStyle = glow;
+  ctx.fill();
+
+  // Fan frame
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+  ctx.strokeStyle = '#ddd';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+  ctx.fillStyle = '#e8e8e8';
+  ctx.fill();
+
+  // Inner hexagonal frame
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius * 0.85, 0, Math.PI * 2);
+  ctx.strokeStyle = '#bbb';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // RGB ring inside
+  const ring = ctx.createRadialGradient(cx, cy, radius * 0.6, cx, cy, radius * 0.85);
+  ring.addColorStop(0, rgbAlpha(offset, 0.8));
+  ring.addColorStop(1, rgbAlpha(offset + 40, 0.8));
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius * 0.85, 0, Math.PI * 2);
+  ctx.arc(cx, cy, radius * 0.60, 0, Math.PI * 2, true);
+  ctx.fillStyle = ring;
+  ctx.fill();
+
+  // Spinning blades
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(tick * 0.08);
+  for (let i = 0; i < 9; i++) {
+    ctx.save();
+    ctx.rotate((i / 9) * Math.PI * 2);
+    ctx.beginPath();
+    ctx.ellipse(radius * 0.28, 0, radius * 0.22, radius * 0.08, 0.3, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(180,180,190,0.85)';
+    ctx.fill();
+    ctx.restore();
+  }
+  // Hub
+  ctx.beginPath();
+  ctx.arc(0, 0, radius * 0.12, 0, Math.PI * 2);
+  ctx.fillStyle = '#555';
+  ctx.fill();
+  ctx.restore();
+}
+
+// Draw radiator
+function drawRadiator(x, y, w, h) {
+  // Body
+  ctx.fillStyle = '#2a2a2a';
+  ctx.fillRect(x, y, w, h);
+  // Fins
+  const finCount = 28;
+  for (let i = 0; i < finCount; i++) {
+    const fx = x + (w / finCount) * i;
+    ctx.fillStyle = i % 2 === 0 ? '#333' : '#222';
+    ctx.fillRect(fx, y, w / finCount, h);
+  }
+  // Frame
+  ctx.strokeStyle = '#555';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(x, y, w, h);
+}
+
+// Draw GPU
+function drawGPU(x, y, w, h) {
+  // PCB
+  const grad = ctx.createLinearGradient(x, y, x, y + h);
+  grad.addColorStop(0, '#1a1a1a');
+  grad.addColorStop(1, '#111');
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 8);
+  ctx.fill();
+
+  // Heatsink shroud - ASUS TAICHI style black
+  const shroud = ctx.createLinearGradient(x, y, x, y + h * 0.75);
+  shroud.addColorStop(0, '#1c1c1c');
+  shroud.addColorStop(0.5, '#222');
+  shroud.addColorStop(1, '#181818');
+  ctx.fillStyle = shroud;
+  ctx.beginPath();
+  ctx.roundRect(x + 5, y + 5, w - 10, h * 0.82, 6);
+  ctx.fill();
+
+  // Fin detail lines on shroud
+  for (let i = 0; i < 6; i++) {
+    ctx.beginPath();
+    ctx.moveTo(x + 15 + i * 18, y + 10);
+    ctx.lineTo(x + 15 + i * 18, y + h * 0.78);
+    ctx.strokeStyle = 'rgba(80,80,80,0.6)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // ASUS logo area
+  ctx.fillStyle = '#333';
+  ctx.beginPath();
+  ctx.roundRect(x + w * 0.55, y + h * 0.1, w * 0.35, h * 0.15, 3);
+  ctx.fill();
+  ctx.fillStyle = '#aaa';
+  ctx.font = 'bold 11px Arial';
+  ctx.fillText('ASUS', x + w * 0.57, y + h * 0.2);
+
+  // TAICHI text
+  ctx.fillStyle = '#777';
+  ctx.font = 'bold 9px Arial';
+  ctx.fillText('TAICHI', x + w * 0.57, y + h * 0.28);
+
+  // AMD Radeon badge
+  ctx.fillStyle = '#e00';
+  ctx.beginPath();
+  ctx.roundRect(x + 15, y + h * 0.1, 55, 20, 3);
+  ctx.fill();
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 8px Arial';
+  ctx.fillText('AMD Radeon', x + 18, y + h * 0.1 + 13);
+
+  // Backplate
+  ctx.fillStyle = '#1a1a1a';
+  ctx.beginPath();
+  ctx.roundRect(x + 5, y + h * 0.84, w - 10, h * 0.14, 4);
+  ctx.fill();
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(x + 5, y + h * 0.84, w - 10, h * 0.14);
+
+  // Power connector (red LED)
+  ctx.fillStyle = '#e00';
+  ctx.beginPath();
+  ctx.arc(x + w - 20, y + h * 0.88, 4, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.shadowColor = '#ff0000';
+  ctx.shadowBlur = 8;
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  // PCIe fingers
+  ctx.fillStyle = '#ffd700';
+  for (let i = 0; i < 12; i++) {
+    ctx.fillRect(x + 10 + i * 8, y + h - 4, 5, 4);
+  }
+
+  // Outer border
+  ctx.strokeStyle = '#444';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 8);
+  ctx.stroke();
+}
+
+// Draw tubing
+function drawTube(points, color) {
+  if (points.length < 2) return;
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, points[0].y);
+  for (let i = 1; i < points.length; i++) {
+    ctx.lineTo(points[i].x, points[i].y);
+  }
+  ctx.strokeStyle = '#111';
+  ctx.lineWidth = 12;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, points[0].y);
+  for (let i = 1; i < points.length; i++) {
+    ctx.lineTo(points[i].x, points[i].y);
+  }
+  ctx.strokeStyle = '#2a2a2a';
+  ctx.lineWidth = 8;
+  ctx.stroke();
+
+  // Highlight
+  ctx.beginPath();
+  ctx.moveTo(points[0].x - 2, points[0].y - 2);
+  for (let i = 1; i < points.length; i++) {
+    ctx.lineTo(points[i].x - 2, points[i].y - 2);
+  }
+  ctx.strokeStyle = 'rgba(255,255,255,0.07)';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+}
+
+// Draw motherboard
+function drawMotherboard(x, y, w, h) {
+  ctx.fillStyle = '#1a2a1a';
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 4);
+  ctx.fill();
+
+  // PCB texture
+  for (let i = 0; i < 5; i++) {
+    for (let j = 0; j < 4; j++) {
+      ctx.fillStyle = 'rgba(0,80,0,0.15)';
+      ctx.fillRect(x + 5 + i * (w/5), y + 5 + j * (h/4), w/5 - 3, h/4 - 3);
+    }
+  }
+
+  // CPU socket area
+  ctx.strokeStyle = '#555';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(x + 15, y + 15, 70, 70);
+  ctx.fillStyle = '#111';
+  ctx.fillRect(x + 16, y + 16, 68, 68);
+
+  // RAM slots
+  for (let i = 0; i < 4; i++) {
+    ctx.fillStyle = '#222';
+    ctx.fillRect(x + w - 22, y + 15 + i * 28, 16, 24);
+    const ramColor = rgb(i * 50);
+    ctx.fillStyle = ramColor;
+    ctx.fillRect(x + w - 21, y + 15 + i * 28, 2, 24);
+  }
+
+  // NVME slot
+  ctx.fillStyle = '#333';
+  ctx.fillRect(x + 15, y + h - 30, 80, 10);
+
+  ctx.strokeStyle = '#2a4a2a';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 4);
+  ctx.stroke();
+}
+
+// Draw pump head / AIO block
+function drawPumpHead(cx, cy, r) {
+  // Body
+  const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+  g.addColorStop(0, '#333');
+  g.addColorStop(1, '#111');
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.fillStyle = g;
+  ctx.fill();
+
+  // RGB ring
+  const ring2 = ctx.createRadialGradient(cx, cy, r * 0.6, cx, cy, r);
+  ring2.addColorStop(0, rgbAlpha(200, 0.9));
+  ring2.addColorStop(1, rgbAlpha(240, 0.7));
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.arc(cx, cy, r * 0.6, 0, Math.PI * 2, true);
+  ctx.fillStyle = ring2;
+  ctx.fill();
+
+  // Logo
+  ctx.fillStyle = 'rgba(255,255,255,0.15)';
+  ctx.beginPath();
+  ctx.arc(cx, cy, r * 0.4, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.strokeStyle = '#555';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.stroke();
+}
+
+// PSU shroud
+function drawPSU(x, y, w, h) {
+  ctx.fillStyle = '#1a1a1a';
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 6);
+  ctx.fill();
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // Vent holes
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 3; j++) {
+      ctx.beginPath();
+      ctx.arc(x + 15 + i * 18, y + 15 + j * 15, 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#111';
+      ctx.fill();
+      ctx.strokeStyle = '#333';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+
+  ctx.fillStyle = '#555';
+  ctx.font = '9px Arial';
+  ctx.fillText('PSU', x + w - 28, y + h / 2 + 4);
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+
+  // Background
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, '#0d0d12');
+  bg.addColorStop(1, '#0a0a0f');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // ─── CASE SHELL ───
+  const caseX = 40, caseY = 30, caseW = 620, caseH = 840;
+  const caseR = 18;
+
+  // Case shadow
+  ctx.shadowColor = 'rgba(0,0,0,0.8)';
+  ctx.shadowBlur = 40;
+  ctx.fillStyle = '#1a1a1a';
+  ctx.beginPath();
+  ctx.roundRect(caseX, caseY, caseW, caseH, caseR);
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  // Case body - white
+  const caseGrad = ctx.createLinearGradient(caseX, caseY, caseX + caseW, caseY + caseH);
+  caseGrad.addColorStop(0, '#f0f0f0');
+  caseGrad.addColorStop(0.3, '#e8e8e8');
+  caseGrad.addColorStop(0.7, '#d8d8d8');
+  caseGrad.addColorStop(1, '#c8c8c8');
+  ctx.fillStyle = caseGrad;
+  ctx.beginPath();
+  ctx.roundRect(caseX, caseY, caseW, caseH, caseR);
+  ctx.fill();
+
+  // Glass panel (tempered glass look)
+  const glassGrad = ctx.createLinearGradient(caseX + 10, caseY + 10, caseX + caseW - 10, caseY + caseH - 10);
+  glassGrad.addColorStop(0, 'rgba(20,20,30,0.97)');
+  glassGrad.addColorStop(1, 'rgba(10,10,15,0.97)');
+  ctx.fillStyle = glassGrad;
+  ctx.beginPath();
+  ctx.roundRect(caseX + 10, caseY + 10, caseW - 20, caseH - 20, caseR - 4);
+  ctx.fill();
+
+  // Glass reflection
+  const ref = ctx.createLinearGradient(caseX + 10, caseY + 10, caseX + 80, caseY + caseH - 10);
+  ref.addColorStop(0, 'rgba(255,255,255,0.06)');
+  ref.addColorStop(0.3, 'rgba(255,255,255,0.02)');
+  ref.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = ref;
+  ctx.beginPath();
+  ctx.roundRect(caseX + 10, caseY + 10, caseW - 20, caseH - 20, caseR - 4);
+  ctx.fill();
+
+  // Case edge highlight
+  ctx.strokeStyle = 'rgba(255,255,255,0.6)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(caseX, caseY, caseW, caseH, caseR);
+  ctx.stroke();
+
+  // Lian Li logo on bottom
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  ctx.font = 'bold 13px Arial';
+  ctx.fillText('LIAN LI  A3', caseX + 20, caseY + caseH - 15);
+
+  // ─── RGB ambient light on glass from inside ───
+  const ambientColors = [
+    { x: caseX + 100, y: caseY + 80, r: 140 },
+    { x: caseX + caseW - 100, y: caseY + 200, r: 120 },
+    { x: caseX + 100, y: caseY + caseH - 150, r: 100 },
+  ];
+  ambientColors.forEach((a, i) => {
+    const ag = ctx.createRadialGradient(a.x, a.y, 0, a.x, a.y, a.r);
+    ag.addColorStop(0, rgbAlpha(i * 120, 0.12));
+    ag.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = ag;
+    ctx.beginPath();
+    ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  // ─── TOP RADIATOR (360mm) + 3 FANS ───
+  drawRadiator(85, 50, 530, 70);
+
+  // Top 3 fans
+  drawFan(175, 85, 44, 0);
+  drawFan(350, 85, 44, 80);
+  drawFan(525, 85, 44, 160);
+
+  // ─── MOTHERBOARD ───
+  drawMotherboard(80, 160, 160, 260);
+
+  // ─── AIO PUMP HEAD on CPU ───
+  drawPumpHead(155, 225, 30);
+
+  // ─── TUBING ───
+  // From radiator down to pump
+  drawTube([
+    { x: 200, y: 120 }, { x: 200, y: 145 }, { x: 155, y: 145 }, { x: 155, y: 195 }
+  ]);
+  drawTube([
+    { x: 260, y: 120 }, { x: 260, y: 150 }, { x: 185, y: 190 }, { x: 185, y: 200 }
+  ]);
+
+  // From pump to GPU water block
+  drawTube([
+    { x: 155, y: 255 }, { x: 155, y: 290 }, { x: 310, y: 290 }, { x: 380, y: 330 }
+  ]);
+  drawTube([
+    { x: 185, y: 255 }, { x: 185, y: 280 }, { x: 320, y: 280 }, { x: 380, y: 350 }
+  ]);
+
+  // ─── GPU (AMD ASUS TAICHI) ───
+  drawGPU(290, 320, 340, 110);
+
+  // GPU waterblock
+  const wbGrad = ctx.createLinearGradient(530, 330, 620, 420);
+  wbGrad.addColorStop(0, '#1a1a1a');
+  wbGrad.addColorStop(1, '#111');
+  ctx.fillStyle = wbGrad;
+  ctx.beginPath();
+  ctx.roundRect(560, 325, 60, 100, 6);
+  ctx.fill();
+
+  const wbRgb = ctx.createRadialGradient(590, 375, 0, 590, 375, 45);
+  wbRgb.addColorStop(0, rgbAlpha(300, 0.5));
+  wbRgb.addColorStop(1, rgbAlpha(340, 0.1));
+  ctx.fillStyle = wbRgb;
+  ctx.beginPath();
+  ctx.roundRect(560, 325, 60, 100, 6);
+  ctx.fill();
+
+  ctx.strokeStyle = '#444';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(560, 325, 60, 100);
+
+  // More tubing from waterblock back up
+  drawTube([
+    { x: 590, y: 325 }, { x: 590, y: 200 }, { x: 440, y: 120 }
+  ]);
+  drawTube([
+    { x: 565, y: 420 }, { x: 565, y: 460 }
+  ]);
+
+  // ─── RIGHT SIDE FANS (3 fans) ───
+  drawFan(575, 290, 55, 40);
+  drawFan(575, 480, 55, 120);
+  drawFan(575, 670, 55, 200);
+
+  // ─── PSU SHROUD ───
+  drawPSU(80, 690, 420, 100);
+
+  // Cable bundles (decorative)
+  ctx.strokeStyle = '#222';
+  ctx.lineWidth = 6;
+  ctx.beginPath();
+  ctx.moveTo(200, 440);
+  ctx.bezierCurveTo(220, 500, 180, 560, 200, 620);
+  ctx.stroke();
+
+  ctx.strokeStyle = '#1a1a1a';
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.moveTo(210, 440);
+  ctx.bezierCurveTo(230, 500, 195, 565, 210, 625);
+  ctx.stroke();
+
+  // ─── CASE FRAME ELEMENTS ───
+  // Top frame bar
+  ctx.fillStyle = '#d0d0d0';
+  ctx.fillRect(caseX + 10, caseY + 10, caseW - 20, 6);
+
+  // Bottom frame bar
+  ctx.fillStyle = '#c0c0c0';
+  ctx.fillRect(caseX + 10, caseY + caseH - 16, caseW - 20, 6);
+
+  // Front I/O panel (top right area)
+  ctx.fillStyle = '#bbb';
+  ctx.beginPath();
+  ctx.roundRect(caseX + caseW - 120, caseY + 12, 108, 22, 3);
+  ctx.fill();
+
+  // USB/audio ports
+  for (let i = 0; i < 3; i++) {
+    ctx.fillStyle = '#333';
+    ctx.beginPath();
+    ctx.roundRect(caseX + caseW - 115 + i * 30, caseY + 17, 16, 12, 2);
+    ctx.fill();
+  }
+
+  // Power button
+  const pbGlow = ctx.createRadialGradient(caseX + caseW - 25, caseY + 23, 0, caseX + caseW - 25, caseY + 23, 10);
+  pbGlow.addColorStop(0, 'rgba(0,200,255,0.8)');
+  pbGlow.addColorStop(1, 'rgba(0,200,255,0)');
+  ctx.fillStyle = pbGlow;
+  ctx.beginPath();
+  ctx.arc(caseX + caseW - 25, caseY + 23, 10, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#222';
+  ctx.beginPath();
+  ctx.arc(caseX + caseW - 25, caseY + 23, 6, 0, Math.PI * 2);
+  ctx.fill();
+
+  // ─── LABEL OVERLAY ───
+  const labels = [
+    { x: 350, y: 75, text: '360mm AIO Radiator' },
+    { x: 20, y: 290, text: 'Motherboard' },
+    { x: 350, y: 400, text: 'ASUS TAICHI — AMD Radeon' },
+    { x: 615, y: 285, text: 'Fans RGB' },
+    { x: 250, y: 745, text: 'PSU Shroud' },
+  ];
+
+  labels.forEach(l => {
+    ctx.fillStyle = 'rgba(255,255,255,0.65)';
+    ctx.font = '10px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(l.text, l.x, l.y);
+  });
+  ctx.textAlign = 'left';
+
+  tick++;
+  requestAnimationFrame(draw);
+}
+
+draw();
+</script>
+</body>
+</html>
